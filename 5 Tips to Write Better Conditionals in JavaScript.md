@@ -1,12 +1,12 @@
+# 写出更好的JavaScript条件语句的5个小技巧
+
 > - 原文地址： [5 Tips to Write Better Conditionals in JavaScript](https://scotch.io/bar-talk/5-tips-to-write-better-conditionals-in-javascript#toc-3-use-default-function-parameters-and-destructuring)
-> 
+>
 > - 原文作者：[ecelyn Yeen](https://scotch.io/@jecelyn)[(@jecelynyeen)](https://twitter.com/jecelynyeen)
-> 
+>
 > - 译者：[ZhengAu](https://github.com/ZhengAu)
 
 ---
-
-# 写出更好的JavaScript条件语句的5个小技巧
 
 用 `JavaScript` 工作时，我们会经常处理很多条件语句，接下来推荐5个小技巧让你写出更好更干净的条件语句。
 
