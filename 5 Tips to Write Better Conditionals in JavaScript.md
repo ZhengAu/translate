@@ -131,6 +131,56 @@ function test(fruit, quantity) {
 
 ## 3. 使用默认的函数参数和解构赋值
 
+下面这段代码对我们来说都比较熟悉，我们在使用 `JavaScript` 时需要经常判断 **null/undefined** 和赋默认值。
+
+```javascript
+function test(fruit, quantity) {
+  if (!fruit) return;
+  const q = quantity || 1; // if quantity not provided, default to one
+
+  console.log(`We have ${q} ${fruit}!`);
+}
+
+//test results
+test('banana'); // We have 1 banana!
+test('apple', 2); // We have 2 apple!
+```
+
+事实上，我们可以通过分配默认的函数参数来消除变量 `q` 。
+
+```javascript
+function test(fruit, quantity = 1) { // if quantity not provided, default to one
+  if (!fruit) return;
+  console.log(`We have ${quantity} ${fruit}!`);
+}
+
+//test results
+test('banana'); // We have 1 banana!
+test('apple', 2); // We have 2 apple!
+```
+
+上面的代码看起来更加简洁和直观了。这里注意一下，每个参数都可以有自己默认的函数参数。例如，我们也可以给 `fruit` 赋默认值，`function test(fruit = 'unknown', quantity = 1)` 。
+
+假设参数 `fruit` 是一个对象，我们还能够赋默认值吗？
+
+```javascript
+function test(fruit) { 
+  // printing fruit name if value provided
+  if (fruit && fruit.name)  {
+    console.log (fruit.name);
+  } else {
+    console.log('unknown');
+  }
+}
+
+//test results
+test(undefined); // unknown
+test({ }); // unknown
+test({ name: 'apple', color: 'red' }); // apple
+```
+
+看上面的例子，如果水果 `name` 存在就输出水果名字，否则输出 `unknown` 。
+
 ## 4. 优先选择 **Map/对象遍历** 而不是 **switch** 语句
 
 ## 5. 对全部/部分判断时，使用 **Array.every** 和 **Array.some**
