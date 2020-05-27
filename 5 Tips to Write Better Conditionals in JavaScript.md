@@ -179,7 +179,44 @@ test({ }); // unknown
 test({ name: 'apple', color: 'red' }); // apple
 ```
 
-看上面的例子，如果水果 `name` 存在就输出水果名字，否则输出 `unknown` 。
+看上面的例子，如果水果 `name` 存在就输出水果名字，否则输出 `unknown` 。我们可以忽略 `fruit && fruit.name` 的条件，检查默认的函数参数和解构赋值。
+
+```javascript
+// destructing - get name property only
+// assign default empty object {}
+function test({name} = {}) {
+  console.log (name || 'unknown');
+}
+
+//test results
+test(undefined); // unknown
+test({ }); // unknown
+test({ name: 'apple', color: 'red' }); // apple
+```
+
+如果我们只需要水果的 `name` ，可以使用 `{name}` 从函数参数中解构出来，接下来在代码中就可以使用变量 `name` 代替 `fruit.name` 。 
+
+我们可以赋值空对象 `{}` 为默认的参数。如果我们没有赋值默认参数 `{}` ，当我们执行 `test(undefined)` 就会得到 `Cannot destructure property name of 'undefined' or 'null'` ，因为在 `undefined` 中没有 `name` 这个属性。
+
+如果你不介意使用第三方库，这里有几种方法减少空检查：
+
+- 使用 [Lodash get](https://lodash.com/docs/4.17.15#get)
+- 使用facebook的开源库 [idx](https://github.com/facebookincubator/idx)
+
+下面是一个使用 `lodash` 的例子：
+
+```javascript
+// Include lodash library, you will get _
+function test(fruit) {
+  // get property name, if not available, assign default value 'unknown'
+  console.log(_.get(fruit, 'name', 'unknown'); 
+}
+
+//test results
+test(undefined); // unknown
+test({ }); // unknown
+test({ name: 'apple', color: 'red' }); // apple
+```
 
 ## 4. 优先选择 **Map/对象遍历** 而不是 **switch** 语句
 
