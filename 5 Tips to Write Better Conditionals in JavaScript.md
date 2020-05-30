@@ -273,4 +273,29 @@ function test(color) {
 
 **[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)** 是自 ES2015 起可用的对象类型，允许存储键值对。
 
+我们应该禁止使用 *switch* 语句吗？不需要限制自己使用它。就我个人而言，我会尽可能的使用对象字面量，但是我不会设置严格的规则来禁止使用它，你可以在你的场景中合理使用它。
+
+Todd Motto 有一篇深入讨论了使用 switch 语句和对象字面量的 [文章](https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals)。
+
+对于上面的例子，我们可以使用 **Array.filter** 来重构上面的代码来得到同样的结果。
+
+```javascript
+ const fruits = [
+    { name: 'apple', color: 'red' }, 
+    { name: 'strawberry', color: 'red' }, 
+    { name: 'banana', color: 'yellow' }, 
+    { name: 'pineapple', color: 'yellow' }, 
+    { name: 'grape', color: 'purple' }, 
+    { name: 'plum', color: 'purple' }
+];
+
+function test(color) {
+  // use Array filter to find fruits in color
+
+  return fruits.filter(f => f.color == color);
+}
+```
+
+总有不止一种方法来得到同样的结果。我们在上面展示了4种方法来得到同一个结果。所以说，编程总是有趣的！
+
 ## 5. 对全部/部分判断时，使用 **Array.every** 和 **Array.some**
