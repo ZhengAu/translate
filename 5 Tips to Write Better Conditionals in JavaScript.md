@@ -164,7 +164,7 @@ test('apple', 2); // We have 2 apple!
 假设参数 `fruit` 是一个对象，我们还能够赋默认值吗？
 
 ```javascript
-function test(fruit) { 
+function test(fruit) {
   // printing fruit name if value provided
   if (fruit && fruit.name)  {
     console.log (fruit.name);
@@ -194,7 +194,7 @@ test({ }); // unknown
 test({ name: 'apple', color: 'red' }); // apple
 ```
 
-如果我们只需要水果的 `name` ，可以使用 `{name}` 从函数参数中解构出来，接下来在代码中就可以使用变量 `name` 代替 `fruit.name` 。 
+如果我们只需要水果的 `name` ，可以使用 `{name}` 从函数参数中解构出来，接下来在代码中就可以使用变量 `name` 代替 `fruit.name` 。
 
 我们可以赋值空对象 `{}` 为默认的参数。如果我们没有赋值默认参数 `{}` ，当我们执行 `test(undefined)` 就会得到 `Cannot destructure property name of 'undefined' or 'null'` ，因为在 `undefined` 中没有 `name` 这个属性。
 
@@ -209,7 +209,7 @@ test({ name: 'apple', color: 'red' }); // apple
 // Include lodash library, you will get _
 function test(fruit) {
   // get property name, if not available, assign default value 'unknown'
-  console.log(_.get(fruit, 'name', 'unknown'); 
+  console.log(_.get(fruit, 'name', 'unknown');
 }
 
 //test results
@@ -219,5 +219,58 @@ test({ name: 'apple', color: 'red' }); // apple
 ```
 
 ## 4. 优先选择 **Map/对象遍历** 而不是 **switch** 语句
+
+下面的代码，我们将按颜色输出水果。
+
+```javascript
+function test(color) {
+  // use switch case to find fruits in color
+  switch (color) {
+    case 'red':
+      return ['apple', 'strawberry'];
+    case 'yellow':
+      return ['banana', 'pineapple'];
+    case 'purple':
+      return ['grape', 'plum'];
+    default:
+      return [];
+  }
+}
+
+//test results
+test(null); // []
+test('yellow'); // ['banana', 'pineapple']
+```
+
+上面的代码看起来没有什么问题，但我觉得它相当的啰嗦。同样的结果，我们可以使用更加干净的语法--对象字面量来实现。
+
+```javascript
+// use object literal to find fruits in color
+  const fruitColor = {
+    red: ['apple', 'strawberry'],
+    yellow: ['banana', 'pineapple'],
+    purple: ['grape', 'plum']
+  };
+
+function test(color) {
+  return fruitColor[color] || [];
+}
+```
+
+或许，我们可以使用 **[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)** 来实现同样的结果。
+
+```javascript
+// use Map to find fruits in color
+  const fruitColor = new Map()
+    .set('red', ['apple', 'strawberry'])
+    .set('yellow', ['banana', 'pineapple'])
+    .set('purple', ['grape', 'plum']);
+
+  function test(color) {
+    return fruitColor.get(color) || [];
+  }
+```
+
+**[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)** 是自 ES2015 起可用的对象类型，允许存储键值对。
 
 ## 5. 对全部/部分判断时，使用 **Array.every** 和 **Array.some**
