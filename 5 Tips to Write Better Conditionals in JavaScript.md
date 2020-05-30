@@ -299,3 +299,65 @@ function test(color) {
 总有不止一种方法来得到同样的结果。我们在上面展示了4种方法来得到同一个结果。所以说，编程总是有趣的！
 
 ## 5. 对全部/部分判断时，使用 **Array.every** 和 **Array.some**
+
+最后一个技巧是利用新的（但不是很新的）Javascript 数组方法去减少代码行数。下面的代码，我们想要检查所有的水果是否是红色的。
+
+```javascript
+const fruits = [
+    { name: 'apple', color: 'red' },
+    { name: 'banana', color: 'yellow' },
+    { name: 'grape', color: 'purple' }
+  ];
+
+function test() {
+  let isAllRed = true;
+
+  // condition: all fruits must be red
+  for (let f of fruits) {
+    if (!isAllRed) break;
+    isAllRed = (f.color == 'red');
+  }
+
+  console.log(isAllRed); // false
+}
+```
+
+上面的代码实在太长了，我们可以使用 **Array.every** 来减少代码的行数。
+
+```javascript
+const fruits = [
+    { name: 'apple', color: 'red' },
+    { name: 'banana', color: 'yellow' },
+    { name: 'grape', color: 'purple' }
+  ];
+
+function test() {
+  // condition: short way, all fruits must be red
+  const isAllRed = fruits.every(f => f.color == 'red');
+
+  console.log(isAllRed); // false
+}
+```
+
+现在代码是否更加简介了？同样的方式，如果我们想检查这些水果中是否有红色的，我们可以使用 **Array.some** 一行代码实现这效果。
+
+```javascript
+const fruits = [
+    { name: 'apple', color: 'red' },
+    { name: 'banana', color: 'yellow' },
+    { name: 'grape', color: 'purple' }
+];
+
+function test() {
+  // condition: if any fruit is red
+  const isAnyRed = fruits.some(f => f.color == 'red');
+
+  console.log(isAnyRed); // true
+}
+```
+
+## 总结
+
+让我们一起生产更多高可读性的代码吧。希望你可以在这篇文章中学到实用的技巧。
+
+初次翻译文章，大部分都是一句一句的翻译，尽己所能努力做到意译，加油！希望这篇翻译能对你有用。
