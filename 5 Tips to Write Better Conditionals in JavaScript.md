@@ -281,11 +281,11 @@ Todd Motto 有一篇深入讨论了使用 switch 语句和对象字面量的 [�
 
 ```javascript
  const fruits = [
-    { name: 'apple', color: 'red' }, 
-    { name: 'strawberry', color: 'red' }, 
-    { name: 'banana', color: 'yellow' }, 
-    { name: 'pineapple', color: 'yellow' }, 
-    { name: 'grape', color: 'purple' }, 
+    { name: 'apple', color: 'red' },
+    { name: 'strawberry', color: 'red' },
+    { name: 'banana', color: 'yellow' },
+    { name: 'pineapple', color: 'yellow' },
+    { name: 'grape', color: 'purple' },
     { name: 'plum', color: 'purple' }
 ];
 
